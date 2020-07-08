@@ -6,7 +6,7 @@ header('Access-Control-Allow-Origin:*');
 
 
 
-header('content-type: video/mp4');
+//header('content-type: video/mp4');
 
 $path = $_REQUEST['path'];
 

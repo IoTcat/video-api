@@ -294,7 +294,7 @@ use Obs\ObsClient;
 /* obs get video */
 function getVideo($path, $time = 120*60){
 
-    return obsSign($path, $time);
+    return obsSign($path, $time, 'yimian-video');
 }
 
 
@@ -307,7 +307,7 @@ function getImg($path, $time = 300){
 
 
 
-function obsSign($path, $expires = 300){ 
+function obsSign($path, $expires = 300, $bucket = 'yimian-image'){ 
 
     $obsClient = new ObsClient([
             'key' => $GLOBALS['huawei_AK'],
@@ -318,7 +318,7 @@ function obsSign($path, $expires = 300){
 
     $resp = $obsClient->createSignedUrl( [ 
         'Method' => 'GET',
-        'Bucket' => 'yimian-image',
+        'Bucket' => $bucket,
         'Key' => $path,
         'Expires' => $expires
     ] );
