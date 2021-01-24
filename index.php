@@ -23,6 +23,10 @@ yimian__log("log_api", array("api" => "video", "timestamp" => date('Y-m-d H:i:s'
 
 
 function returnVideo($path){
+    if($path == '404.pm4'){
+        header("Location: https://cdn.yimian.xyz/video/404.mp4");
+        return;
+    }
     $url = getVideo($path);
     header("Location: $url");
 }
