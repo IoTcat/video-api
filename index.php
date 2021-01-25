@@ -8,24 +8,25 @@ header('Access-Control-Allow-Origin:*');
 
 //header('content-type: video/mp4');
 
-$path = $_REQUEST['path'];
+$url = $_REQUEST['url'];
 $isProxy = $_REQUEST['isProxy'];
 
-if($path){
+if($url){
 
-    returnVideo($path);
+    returnVideo($url);
 }
 
 
-yimian__log("log_api", array("api" => "video", "timestamp" => date('Y-m-d H:i:s', time()), "ip" => ip2long(getIp()), "_from" => get_from(), "content" => $path)); 
+yimian__log("log_api", array("api" => "video", "timestamp" => date('Y-m-d H:i:s', time()), "ip" => ip2long(getIp()), "_from" => get_from(), "content" => $url)); 
 
 
 
 
-function returnVideo($path){
-    if($isProxy == "true"){
+function returnVideo($url){
+    if(true || $isProxy == "true"){
         header("Location: https://proxy.yimian.xyz/get/?url=".base64_encode($url)."");
+        return;
     }
-    $url = getVideo($path);
+    $url = getVideo($url);
     header("Location: $url");
 }
